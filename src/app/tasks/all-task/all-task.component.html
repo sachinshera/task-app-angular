@@ -1,0 +1,113 @@
+<!-- list all task with delete and edit button -->
+<div class="container mt-2">
+    <!-- bootstrap item -->
+
+    <div class="row shadow-lg bg-white rounded content">
+        <div class="col-md-12">
+            <div class="card bg-white mt-3 border-0">
+                <div class="card-header bg-white border-0">
+                    <h3 class="text-center">All Task</h3>
+                </div>
+                <div class="card-body border-0">
+                    <table class=" table table-bordered table-hover table-responsive">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Label</th>
+                                <th>Content</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let task of tasks">
+                                <td>{{task.label}}</td>
+                                <td>{{task.content}}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-danger btn-sm"
+                                            (click)="deleteTask(task.id)">Delete</button>
+                                        <button class="btn btn-warning btn-sm"
+                                            (click)="open(content,task.id)">Edit</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- bootstrap item -->
+        </div>
+
+
+    </div>
+
+    <!-- edit modal form -->
+
+
+
+
+    <ng-template #content let-modal>
+        <div class="modal-header border-0 bg-white">
+            <h4 class="modal-title" id="modal-basic-title">Update Task</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body border-0 bg-white">
+            <form class="" [formGroup]="updateTaskForm" (ngSubmit)="updateTask()">
+                <div class="form-group">
+                    <label for="label">Label</label>
+                    <input type="text" name="label" value="{{editingTaskLabel}}" class="form-control"
+                        formControlName="label">
+
+                    <!-- label error  -->
+
+                    <div
+                        *ngIf="updateTaskForm.controls['label'].invalid && (updateTaskForm.controls['label'].dirty || updateTaskForm.controls['label'].touched)">
+                        <div *ngIf="updateTaskForm.controls['label'].errors.error" class="alert alert-danger">
+                            Label is required
+                        </div>
+                        <div *ngIf="updateTaskForm.controls['label'].errors.minlength" class="alert alert-danger">
+                            Label must be at least 3 characters long.
+                        </div>
+                        <div *ngIf="updateTaskForm.controls['label'].errors.maxlength" class="alert alert-danger">
+                            Label cannot be more than 20 characters long.
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="content">content</label>
+                    <textarea name="content" id="content" class="form-control" formControlName="content" cols="20"
+                        rows="3" value="{{editingTaskContent}}"></textarea>
+
+                    <!-- content erros -->
+
+                    <div
+                        *ngIf="updateTaskForm.controls['content'].invalid && (updateTaskForm.controls['content'].dirty || updateTaskForm.controls['content'].touched)">
+                        <div *ngIf="updateTaskForm.controls['content'].errors.error" class="alert alert-danger">
+                            Content is required
+                        </div>
+                        <div *ngIf="updateTaskForm.controls['content'].errors.minlength" class="alert alert-danger">
+                            Content must be at least 3 characters long.
+                        </div>
+                        <div *ngIf="updateTaskForm.controls['content'].errors.maxlength" class="alert alert-danger">
+                            Content cannot be more than 20 characters long.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- error message box -->
+
+                <div *ngIf="errorMessage" class="alert alert-danger">
+                    {{errorMessage}}
+
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary mt-3" type="submit"> Update </button>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+
+
+
+
+</div>

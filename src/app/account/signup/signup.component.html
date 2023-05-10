@@ -1,0 +1,142 @@
+<div class="container mt-3">
+    <div class="card bg-dark text-white" style="border-radius:5px;">
+        <div class="card-body p-5 text-center">
+
+            <form class="mb-md-5 mt-md-4 pb-5" [formGroup]="signupForm" (ngSubmit)="submitForm()">
+
+                <h2 class="fw-bold mb-2 text-uppercase">Signup</h2>
+                <p class="text-white-50 mb-5">Please Enter Your Details For Signup</p>
+
+                <div class="form-outline form-white mb-4 " style="text-align:left;">
+                    <label class="form-label" for="typeEmailX">First Name</label>
+                    <input type="text" id="first_name" name="first_name" class="form-control"
+                        formControlName="first_name" />
+
+                    <!-- first name errors -->
+
+                    <div
+                        *ngIf="signupForm.controls['first_name'].invalid && (signupForm.controls['first_name'].dirty || signupForm.controls['first_name'].touched)">
+                        <div *ngIf="signupForm.controls['first_name'].errors.error" class="alert alert-danger">
+                            First Name is required
+                        </div>
+                        <div *ngIf="signupForm.controls['first_name'].errors.minlength" class="alert alert-danger">
+                            First Name must be at least 3 characters long.
+                        </div>
+                        <div *ngIf="signupForm.controls['first_name'].errors.maxlength" class="alert alert-danger">
+                            First Name cannot be more than 20 characters long.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-outline form-white mb-4" style="text-align:left;">
+                    <label class="form-label" for="typePasswordX">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" formControlName="last_name"
+                        class="form-control" />
+
+                    <!-- last name error -->
+
+
+                    <div
+                        *ngIf="signupForm.controls['last_name'].invalid && (signupForm.controls['last_name'].dirty || signupForm.controls['last_name'].touched)">
+                        <div *ngIf="signupForm.controls['last_name'].errors.error" class="alert alert-danger">
+                            Last Name is required
+                        </div>
+                        <div *ngIf="signupForm.controls['last_name'].errors.minlength" class="alert alert-danger">
+                            Last Name must be at least 3 characters long.
+                        </div>
+                        <div *ngIf="signupForm.controls['last_name'].errors.maxlength" class="alert alert-danger">
+                            Last Name cannot be more than 20 characters long.
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="form-outline form-white mb-4" style="text-align:left;">
+                    <label class="form-label" for="typePasswordX">Email</label>
+                    <input type="email" id="email" name="email" formControlName="email" class="form-control" />
+
+                    <!-- email errors -->
+
+                    <div
+                        *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)">
+                        <div *ngIf="signupForm.controls['email'].errors.error" class="alert alert-danger">
+                            Email is required
+                        </div>
+                        <div *ngIf="signupForm.controls['email'].errors.email" class="alert alert-danger">
+                            Email must be a valid email address.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-outline form-white mb-4" style="text-align:left;">
+                    <label class="form-label" for="typePasswordX">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" formControlName="mobile_number" class="form-control" />
+
+                    <!-- mobile number errors -->
+
+                    <div
+                        *ngIf="signupForm.controls['mobile_number'].invalid && (signupForm.controls['mobile_number'].dirty || signupForm.controls['mobile_number'].touched)">
+                        <div *ngIf="signupForm.controls['mobile_number'].errors.error" class="alert alert-danger">
+                            Mobile Number is required
+                        </div>
+                        <div *ngIf="signupForm.controls['mobile_number'].errors.minlength" class="alert alert-danger">
+                            Mobile Number must be at least 10 characters long.
+                        </div>
+                        <div *ngIf="signupForm.controls['mobile_number'].errors.maxlength" class="alert alert-danger">
+                            Mobile Number cannot be more than 10 characters long.
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="form-outline form-white mb-4" style="text-align:left;">
+                    <label class="form-label" for="typePasswordX">password</label>
+                    <input type="password" id="password" formControlName="password" name="password"
+                        class="form-control" />
+
+                    <!-- password errors -->
+
+                    <div
+                        *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)">
+                        <div *ngIf="signupForm.controls['password'].errors.error" class="alert alert-danger">
+                            Password is required
+                        </div>
+                        <div *ngIf="signupForm.controls['password'].errors.minlength" class="alert alert-danger">
+                            Password must be at least 6 characters long.
+                        </div>
+                        <div *ngIf="signupForm.controls['password'].errors.maxlength" class="alert alert-danger">
+                            Password cannot be more than 20 characters long.
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- display error message -->
+
+                <div *ngIf="errorMessage" class="alert alert-danger">
+                    {{errorMessage}}
+                </div>
+
+
+                <button class="btn btn-outline-light btn-lg px-5" type="submit">Signup</button>
+
+                <div class="d-flex justify-content-center text-center">
+                    <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
+                    <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
+                </div>
+
+            </form>
+
+            <p class="mb-0">Already have an account? <a routerLink="/" class="text-white-50 fw-bold">Login</a>
+            </p>
+
+        </div>
+    </div>
+</div>

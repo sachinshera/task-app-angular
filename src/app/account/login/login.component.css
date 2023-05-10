@@ -1,0 +1,13 @@
+.container{
+    width:40%;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .container{
+        width: 100%;
+    }
+    table{
+        font-size: 12px;
+    }
+}
